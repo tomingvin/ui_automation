@@ -4,5 +4,5 @@ Boilerplate code, UI automation using Playwright and pytest.
 
 ## installation
 
-pip install pytest-playwright
-playwright install
+1. pip install pytest-playwright
+2. playwright install
