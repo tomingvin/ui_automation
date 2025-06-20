@@ -1,3 +1,3 @@
 URLS = {
-    "example_test": "https://some-example-url.com",
+    "example_url": "https://some-example-url.com",
 }

@@ -4,7 +4,7 @@ TEST_MATRIX = [
     {
         "test_name": "test_example",
         "user": "martin",
-        "env": "lx1_test",
+        "env": "example_url",
         "device": "Desktop Chrome",
         "browser": "chromium"
     }   
