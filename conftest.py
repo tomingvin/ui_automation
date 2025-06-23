@@ -56,3 +56,27 @@ def pytest_generate_tests(metafunc):
 def test_config(request):
  
     return getattr(request, "param", {})
+
+@pytest.fixture
+def browser_context_args(browser_context_args, playwright, test_config):
+
+    context_args = browser_context_args.copy()
+    device_name = test_config.get("device")
+
+    if device_name:
+        context_args.update(playwright.devices[device_name])
+    return context_args
+
+@pytest.fixture
+def browser_type(playwright, test_config):
+    browser_name = test_config.get("browser", "chromium")
+    if browser_name not in ["chromium", "firefox", "webkit"]:
+        raise ValueError(f"Unsupported browser: {browser_name}")
+    return getattr(playwright, browser_name)
+
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_configure(config):
+    report_path = getattr(config.option, "htmlpath", None)
+    if report_path:
+        os.makedirs(os.path.dirname(report_path), exist_ok=True)
